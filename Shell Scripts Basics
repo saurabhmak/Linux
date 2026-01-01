@@ -1,0 +1,124 @@
+##Shell Scripts Basics.
+Here are Shell Script basics to keep in mind, especially if you’re working with Bash (the most common shell):
+1. Shebang (Interpreter)
+
+Start scripts with:
+
+#!/bin/bash
+
+
+Tells the system which shell should run the script.
+
+2. Make Script Executable
+chmod +x script.sh
+./script.sh
+
+
+Or run with:
+
+bash script.sh
+
+3. Comments
+# This is a comment
+
+
+Use comments to explain why, not just what.
+
+4. Variables
+
+No spaces around =
+
+name="Alex"
+echo "$name"
+
+
+Use quotes to avoid bugs with spaces.
+
+5. User Input
+read username
+read -p "Enter name: " username
+
+6. Arguments
+$0  # script name
+$1  # first argument
+$2  # second argument
+$@  # all arguments
+$#  # number of arguments
+
+7. Conditionals
+if [ "$a" -eq 10 ]; then
+  echo "Ten"
+elif [ "$a" -gt 10 ]; then
+  echo "Greater"
+else
+  echo "Less"
+fi
+
+
+⚠️ Spaces inside [ ] are required.
+
+8. Loops
+
+For loop
+
+for i in 1 2 3; do
+  echo $i
+done
+
+
+While loop
+
+while [ $x -lt 5 ]; do
+  echo $x
+  ((x++))
+done
+
+9. Exit Status
+
+0 = success
+
+Non-zero = failure
+
+command
+echo $?
+
+10. Functions
+greet() {
+  echo "Hello $1"
+}
+greet Alex
+
+11. Quoting Rules (Very Important)
+
+" " → expands variables
+
+' ' → literal text (no expansion)
+
+`cmd` or $(cmd) → command substitution (prefer $())
+
+12. File Tests
+-f file   # exists and is file
+-d dir    # directory
+-r file   # readable
+-w file   # writable
+-x file   # executable
+
+13. Debugging
+bash -x script.sh
+
+
+Or inside script:
+
+set -x
+set +x
+
+14. Safety Tips
+
+Always quote variables:
+
+rm "$file"
+
+
+Use set -e to stop on errors
+
+Use set -u to catch unset variables
