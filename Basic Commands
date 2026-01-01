@@ -1,0 +1,126 @@
+In Linux normal user on terminal represent with $, while root/admin user on terminal represent with #
+To run command from normal user on terminal, run with sudo in front of command like user@ubuntu:~$ sudo apt install package_name
+To become root, run below command from normal user terminal user@ubuntu:~$ sudo su - + enter # This will prompt you for password, put the password of account user; after putting the password, you will become root like-
+user@ ubuntu:~$ sudo su -
+[sudo] password for user: root@ ubuntu:~#
+Below is the list of command that we learn and used during the Assignments of Linux Essentials:-
+•
+whoami # Command to check the username/account from which, I am logged in.
+•
+sudo su - # To become root, to run all command as a root user.
+•
+sudo command_name # To run command from normal account with root privileges.
+•
+pwd # To check current working directory, where I am.
+•
+useradd # Command to create user
+•
+passwd # Command to set the password of newly created user
+•
+ls # Command to check list of files & directories in current working directory
+•
+ls -lh # Command to check list of files & directories in current working directory with details like Permission, Ownership of user, Ownership of group, Timestamp in human readable format
+•
+ls -lha # Command to check list of files & directories in current working directory including hidden files with details like Permission, Ownership of user, Ownership of group, Timestamp in human readable format
+•
+mkdir # Command to create directory
+•
+touch # Command to create empty files
+•
+cd # Command to change directory
+•
+cd .. # Command to go one directory up
+•
+cp # Command to copy the filename within directory or out of directory on same server/vm
+•
+rm # Command to remove files & directory
+•
+rm -f # Command to remove files & directory forcefully
+•
+mv # Command to move/rename the files & directory
+•
+find # Command to search the files & directory
+•
+locate # This command was not installed by default, package belongs to this command is locate, we need to install it like $ sudo apt install locate, after that update this database with command updatedb
+•
+chmod # Command to change the permissions of files & directories
+•
+chown # Command to change the ownership of files & directories
+•
+chgrp # Command to change the group permissions of files & directories
+In Linux, both find and locate are used to search for files, but they work very differently. Here’s a clear comparison:
+Key Differences Between find and locate
+1. How They Search
+Feature
+find
+locate
+Search method
+Searches the actual filesystem in real time
+Searches a pre-built database (mlocate.db)
+Speed
+Slower (walks directories live)
+Very fast (simple text lookup)
+2. Data Freshness
+find
+locate
+Up-to-date results?
+Always accurate
+May be outdated if the database hasn’t been updated
+find
+locate
+Database update?
+Not needed
+Uses updatedb (usually run daily by cron/systemd timer)
+3. Usage Style
+•
+find
+o
+Highly flexible: can filter by name, size, type, permissions, time, ownership, etc.
+o
+Can run actions like -exec, -delete, -print, etc.
+o
+Example:
+o
+find /home -name "*.txt"
+•
+locate
+o
+Simple: search by name only (supports patterns).
+o
+Example:
+o
+locate myfile.txt
+4. Requirements
+find
+locate
+Needs filesystem access?
+Yes
+No (just searches the DB)
+Works on newly created files?
+Yes
+Not until DB updates
+5. Permissions
+•
+find respects file permissions and only shows what the user can access.
+•
+locate might show paths to files the user can’t read (but usually hides content), depending on implementation.
+When to Use Which
+Use find when:
+•
+You need real-time results.
+•
+You're looking for files using attributes other than name (size, date, permissions…).
+•
+You want to perform actions (delete, move, exec commands).
+Use locate when:
+•
+You want fast lookups by filename.
+•
+You don’t need exact real-time accuracy.
+•
+You’re searching a large filesystem and speed matters.
+Summary (One-liner)
+•
+find searches the filesystem live — accurate but slower.
+•
+locate searches a database — very fast but can be outdated.
